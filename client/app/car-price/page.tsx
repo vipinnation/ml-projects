@@ -86,7 +86,7 @@ export default function Component() {
     <div className="flex flex-col min-h-screen">
       <main className="flex-1 bg-gray-100 py-12 sm:px-6">
         <div className="mx-2 sm:container mx-auto max-w-2xl">
-          <h2 className="text-3xl font-bold mb-8">Predict Your Car's Price</h2>
+          <h2 className="text-3xl font-bold mb-8">Predict Your Car&apos;s Price</h2>
 
           {isLoading == false ? (
             <>
@@ -208,7 +208,7 @@ export default function Component() {
             <p className="text-gray-700 mb-4">
               Based on the information you provided, the predicted price for
               your car is {predictedPrice}. This estimate takes into account the
-              car's make, model, year, mileage, fuel type, transmission, and
+              car&apos;s make, model, year, mileage, fuel type, transmission, and
               previous ownership history.
             </p>
             <p className="text-gray-700 mb-4">

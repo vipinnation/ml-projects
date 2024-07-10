@@ -47,8 +47,8 @@ const SelectField: React.FC<Props> = ({
         <SelectContent>
           {options && options.length > 0 ? (
             <>
-              {options.map((item) => (
-                <SelectItem value={item} className="capitalize">
+              {options.map((item,index) => (
+                <SelectItem value={item} className="capitalize" key={index}>
                   {item}
                 </SelectItem>
               ))}
