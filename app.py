@@ -8,7 +8,7 @@ data = pickle.load(open("artifacts/data.pkl","rb"))
 pipe  = pickle.load(open("./artifacts/pipe.pkl","rb"))
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/')
 def index():
@@ -38,22 +38,38 @@ def api_car():
 
 @app.route("/api/car", methods =["GET"])
 def get_car():
-    car_names = data['name'].drop_duplicates().tolist()
-    company_names = data['company'].drop_duplicates().tolist()
-    seller_type = data['seller_type'].drop_duplicates().tolist()
-    fuel = data['fuel'].drop_duplicates().tolist()
-    transmission = data['transmission'].drop_duplicates().tolist()
-    owner = data['owner'].drop_duplicates().tolist()
-    
-    return jsonify({
-        'car_names': car_names,
-        'company_names': company_names,
-        "seller_type":seller_type,
-        "fuel":fuel,
-        "owner":owner,
-        "transmission":transmission
-    })
+   try:
+        car_names = data['name'].drop_duplicates().tolist()
+        company_names = data['company'].drop_duplicates().tolist()
+        seller_type = data['seller_type'].drop_duplicates().tolist()
+        fuel = data['fuel'].drop_duplicates().tolist()
+        transmission = data['transmission'].drop_duplicates().tolist()
+        owner = data['owner'].drop_duplicates().tolist()
+
+        return jsonify({
+            'car_names': car_names,
+            'company_names': company_names,
+            "seller_type": seller_type,
+            "fuel": fuel,
+            "owner": owner,
+            "transmission": transmission
+        })
+        
+   except KeyError as e:
+        return jsonify({'error': f'Missing key in data: {str(e)}'}), 400
+   except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
+    
+    
+# 1. clone repo, to save into /var/www/
+# 2. go to client , npm install and npm run build
+# 3. to repo dir, create venv
+# 4. activate venv
+# 5. pip install -r requiret.txt
+# 6. run car-price.py
+# 7. start python server app.py
