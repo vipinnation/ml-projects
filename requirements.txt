@@ -2,3 +2,5 @@ Flask
 Numpy
 Pandas
 scikit-learn
+seaborn
+Flask-Cors
